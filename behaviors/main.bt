@@ -1,0 +1,125 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "children": [
+            "34a6e3dc-d54d-48c7-b75b-839cde8b486b",
+            "9bd918e1-af99-4c10-bb60-6412f539c1bb",
+            "11411a27-89ba-4eb7-badd-981e1c4dab0e"
+        ],
+        "decorators": [
+            "10883dfe-4a3f-4731-8825-9b58373346af"
+        ]
+    },
+    "meta": {
+        "version": 1
+    },
+    "10883dfe-4a3f-4731-8825-9b58373346af": {
+        "id": "10883dfe-4a3f-4731-8825-9b58373346af",
+        "class": "WhileCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    return true;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "34a6e3dc-d54d-48c7-b75b-839cde8b486b": {
+        "id": "34a6e3dc-d54d-48c7-b75b-839cde8b486b",
+        "class": "ListenEmbedded",
+        "name": "",
+        "options": {
+            "rule": "hey_jibo",
+            "onResult": [
+                "(listener) => {",
+                "\tlistener.on('hey-jibo', function(asrResult, speakerIds) {",
+                "\t\t",
+                "\t})",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "9bd918e1-af99-4c10-bb60-6412f539c1bb": {
+        "id": "9bd918e1-af99-4c10-bb60-6412f539c1bb",
+        "class": "TakePhoto",
+        "name": "",
+        "options": {
+            "resolution": 4,
+            "onPhoto": [
+                "(error, imageUrl) => {",
+                "  notepad.imageUrl = imageUrl;",
+                "  console.log(notepad.imageUrl);",
+                "  var request = require('request').defaults({ encoding: null });",
+                "  console.log('Sending Request');",
+                "  ",
+                "request.get(imageUrl, function (error, response, body) {",
+                "    console.log('response', response);",
+                "    console.log('body', body);",
+                "    ",
+                "    console.log('base64', new Buffer(body).toString('base64'));",
+                "    ",
+                "    if (!error && response.statusCode == 200) {",
+                "      var options = {",
+                "        method: 'POST',",
+                "        url: 'https://api.kairos.com/recognize',",
+                "        headers: {",
+                "          accept: 'application/json',",
+                "          app_key: 'b11c5ff2a8566127d6cbd0136444273e',",
+                "          app_id: 'd77f90f9',",
+                "          'content-type': 'application/json' ",
+                "        },",
+                "        body: { ",
+                "          image: new Buffer(body).toString('base64'),",
+                "          gallery_name: 'gallerytest1',",
+                "          selector: 'SETPOSE'",
+                "        },",
+                "        json: true };",
+                "        ",
+                "        console.log('options', options);",
+                "        request(options, function (error, response, body) {",
+                "          if (error) throw new Error(error);",
+                "          console.log(body);",
+                "        });",
+                "    }",
+                "});",
+                "}"
+            ],
+            "noDistortion": true
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "11411a27-89ba-4eb7-badd-981e1c4dab0e": {
+        "id": "11411a27-89ba-4eb7-badd-981e1c4dab0e",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  jibo.face.renderOnlyWhenDirty = false;",
+                "  ",
+                "  notepad.photo = new PIXI.Sprite();",
+                "  ",
+                "  notepad.photo.texture = PIXI.Texture.fromImage(notepad.imageUrl);",
+                "  console.log(notepad.imageUrl);",
+                "  ",
+                "  jibo.face.stage.addChild(notepad.photo);",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    }
+}
