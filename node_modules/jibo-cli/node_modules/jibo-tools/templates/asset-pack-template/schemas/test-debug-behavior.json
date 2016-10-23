@@ -1,0 +1,16 @@
+{
+  "TestDebugBehavior": {
+    "type": "leaf",
+    "options": [
+      {
+        "type": "string",
+        "field": "text",
+        "description": "Debug text to log.",
+        "defaultValue": "null"
+      }
+    ]
+  },
+  "meta": {
+    "verison": 1
+  }
+}

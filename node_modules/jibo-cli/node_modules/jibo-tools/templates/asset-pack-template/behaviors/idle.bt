@@ -1,0 +1,60 @@
+{
+  "91": {
+    "id": 91,
+    "class": "Sequence",
+    "name": "",
+    "children": [
+      111,
+      114,
+      112
+    ],
+    "decorators": [],
+    "options": {}
+  },
+  "111": {
+    "id": 111,
+    "class": "PlayAudio",
+    "name": "",
+    "asset-pack": "core",
+    "parent": 91,
+    "options": {
+      "audioPath": "FX_Blip.mp3"
+    }
+  },
+  "112": {
+    "id": 112,
+    "class": "Subtree",
+    "name": "",
+    "asset-pack": "core",
+    "parent": 91,
+    "options": {
+      "behaviorPath": "idle.bt",
+      "getNotepad": [
+        "() => {",
+        "\treturn {};",
+        "}"
+      ],
+      "onResult": [
+        "(result) => {",
+        "}"
+      ]
+    }
+  },
+  "114": {
+    "id": 114,
+    "class": "PlayAnimation",
+    "name": "",
+    "asset-pack": "core",
+    "parent": 91,
+    "options": {
+      "animPath": "animation.keys",
+      "config": [
+        "(animation) => {",
+        "}"
+      ]
+    }
+  },
+  "meta": {
+    "version": 1
+  }
+}

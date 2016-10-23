@@ -1,0 +1,1 @@
+module.exports = module.require('../build/Release/jsjibonlu');

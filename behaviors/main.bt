@@ -6,19 +6,59 @@
         "options": {},
         "asset-pack": "core",
         "children": [
-            "34a6e3dc-d54d-48c7-b75b-839cde8b486b",
-            "9bd918e1-af99-4c10-bb60-6412f539c1bb",
-            "11411a27-89ba-4eb7-badd-981e1c4dab0e"
+            "e3883bac-6a5b-44b7-a9de-9b000fa25eba",
+            "abf3a1ea-fb5b-4b07-bccd-010adaeda3bd",
+            "96a9032d-56a9-4076-87f4-21fe29acffad",
+            "c2de48e9-c75c-4e62-b081-26e350f6ce06",
+            "abe97c0c-97cd-468c-8f59-6b5e655b4220",
+            "fc3ffe2d-4c7b-46ee-9b70-e8cb05ffa119"
         ],
         "decorators": [
-            "10883dfe-4a3f-4731-8825-9b58373346af"
+            "dd041d97-21a0-490d-b8cb-683e7d8cd01a"
         ]
     },
     "meta": {
         "version": 1
     },
-    "10883dfe-4a3f-4731-8825-9b58373346af": {
-        "id": "10883dfe-4a3f-4731-8825-9b58373346af",
+    "e3883bac-6a5b-44b7-a9de-9b000fa25eba": {
+        "id": "e3883bac-6a5b-44b7-a9de-9b000fa25eba",
+        "class": "ListenEmbedded",
+        "name": "",
+        "options": {
+            "rule": "hey_jibo",
+            "onResult": [
+                "(listener) => {",
+                "\tlistener.on('hey-jibo', function(asrResult, speakerIds) {",
+                "\t\tconsole.log(\"detected\");",
+                "\t\tnotepad.personName = null;",
+                "\t});",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "skipped": false
+    },
+    "abf3a1ea-fb5b-4b07-bccd-010adaeda3bd": {
+        "id": "abf3a1ea-fb5b-4b07-bccd-010adaeda3bd",
+        "class": "TakePhoto",
+        "name": "",
+        "options": {
+            "resolution": 2,
+            "onPhoto": [
+                "(error, imageUrl) => {",
+                "  notepad.imageUrl = imageUrl;",
+                "  console.log(notepad.imageUrl);",
+                "}"
+            ],
+            "noDistortion": true
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": []
+    },
+    "dd041d97-21a0-490d-b8cb-683e7d8cd01a": {
+        "id": "dd041d97-21a0-490d-b8cb-683e7d8cd01a",
         "class": "WhileCondition",
         "name": "",
         "options": {
@@ -34,75 +74,8 @@
         },
         "asset-pack": "core"
     },
-    "34a6e3dc-d54d-48c7-b75b-839cde8b486b": {
-        "id": "34a6e3dc-d54d-48c7-b75b-839cde8b486b",
-        "class": "ListenEmbedded",
-        "name": "",
-        "options": {
-            "rule": "hey_jibo",
-            "onResult": [
-                "(listener) => {",
-                "\tlistener.on('hey-jibo', function(asrResult, speakerIds) {",
-                "\t\t",
-                "\t})",
-                "}"
-            ]
-        },
-        "asset-pack": "core",
-        "parent": 1
-    },
-    "9bd918e1-af99-4c10-bb60-6412f539c1bb": {
-        "id": "9bd918e1-af99-4c10-bb60-6412f539c1bb",
-        "class": "TakePhoto",
-        "name": "",
-        "options": {
-            "resolution": 4,
-            "onPhoto": [
-                "(error, imageUrl) => {",
-                "  notepad.imageUrl = imageUrl;",
-                "  console.log(notepad.imageUrl);",
-                "  var request = require('request').defaults({ encoding: null });",
-                "  console.log('Sending Request');",
-                "  ",
-                "request.get(imageUrl, function (error, response, body) {",
-                "    console.log('response', response);",
-                "    console.log('body', body);",
-                "    ",
-                "    console.log('base64', new Buffer(body).toString('base64'));",
-                "    ",
-                "    if (!error && response.statusCode == 200) {",
-                "      var options = {",
-                "        method: 'POST',",
-                "        url: 'https://api.kairos.com/recognize',",
-                "        headers: {",
-                "          accept: 'application/json',",
-                "          app_key: 'b11c5ff2a8566127d6cbd0136444273e',",
-                "          app_id: 'd77f90f9',",
-                "          'content-type': 'application/json' ",
-                "        },",
-                "        body: { ",
-                "          image: new Buffer(body).toString('base64'),",
-                "          gallery_name: 'gallerytest1',",
-                "          selector: 'SETPOSE'",
-                "        },",
-                "        json: true };",
-                "        ",
-                "        console.log('options', options);",
-                "        request(options, function (error, response, body) {",
-                "          if (error) throw new Error(error);",
-                "          console.log(body);",
-                "        });",
-                "    }",
-                "});",
-                "}"
-            ],
-            "noDistortion": true
-        },
-        "asset-pack": "core",
-        "parent": 1
-    },
-    "11411a27-89ba-4eb7-badd-981e1c4dab0e": {
-        "id": "11411a27-89ba-4eb7-badd-981e1c4dab0e",
+    "fc3ffe2d-4c7b-46ee-9b70-e8cb05ffa119": {
+        "id": "fc3ffe2d-4c7b-46ee-9b70-e8cb05ffa119",
         "class": "ExecuteScript",
         "name": "",
         "options": {
@@ -120,6 +93,326 @@
             ]
         },
         "asset-pack": "core",
+        "parent": 1,
+        "skipped": true
+    },
+    "c2de48e9-c75c-4e62-b081-26e350f6ce06": {
+        "id": "c2de48e9-c75c-4e62-b081-26e350f6ce06",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    if (notepad.personName) {",
+                "    callback('Hello' + notepad.personName);",
+                "  } else {",
+                "    callback('Sorry, did not recognize you');",
+                "  }",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": []
+    },
+    "96a9032d-56a9-4076-87f4-21fe29acffad": {
+        "id": "96a9032d-56a9-4076-87f4-21fe29acffad",
+        "class": "ExecuteScriptAsync",
+        "name": "",
+        "options": {
+            "exec": [
+                "(succeed, fail) => {",
+                "  ",
+                "  var request = require('request').defaults({ encoding: null });",
+                "  console.log('Sending Request');",
+                "  notepad.known = false;",
+                "  ",
+                "request.get(notepad.imageUrl, function (error, response, body) {",
+                "    console.log('response', response);",
+                "    console.log('body', body);",
+                "    ",
+                "    console.log('base64', new Buffer(body).toString('base64'));",
+                "    ",
+                "    if (!error && response.statusCode == 200) {",
+                "      var options = {",
+                "        method: 'POST',",
+                "        url: 'https://api.kairos.com/recognize',",
+                "        headers: {",
+                "          accept: 'application/json',",
+                "          app_key: 'b11c5ff2a8566127d6cbd0136444273e',",
+                "          app_id: 'd77f90f9',",
+                "          'content-type': 'application/json' ",
+                "        },",
+                "        body: { ",
+                "          image: new Buffer(body).toString('base64'),",
+                "          gallery_name: 'shubhamgallery',",
+                "          threshold: '0.70',",
+                "          max_num_results: \"1\"",
+                "        },",
+                "        json: true };",
+                "        ",
+                "        console.log('options', options);",
+                "        request(options, function (error, response, body) {",
+                "          if (body.Errors) ",
+                "          {",
+                "            succeed();",
+                "            //throw new Error(error);",
+                "            console.log(body.Errors[0].Message);",
+                "          } else {",
+                "          console.log(body);",
+                "          console.log('detected person', body.images[0].transaction.subject);",
+                "          notepad.personName = body.images[0].transaction.subject;",
+                "          notepad.known = true;",
+                "          succeed();",
+                "        }",
+                "        });",
+                "    }",
+                "});",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
         "parent": 1
+    },
+    "abe97c0c-97cd-468c-8f59-6b5e655b4220": {
+        "id": "abe97c0c-97cd-468c-8f59-6b5e655b4220",
+        "class": "Switch",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [],
+        "children": [
+            "edc7c1e5-110e-4ff7-9a7e-2c2b8c68f0c3",
+            "c40f3476-843a-498d-97fd-9b65ddabe526"
+        ]
+    },
+    "50aeae76-5737-416f-89c4-e3e76d536f45": {
+        "id": "50aeae76-5737-416f-89c4-e3e76d536f45",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "excited.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "edc7c1e5-110e-4ff7-9a7e-2c2b8c68f0c3",
+        "decorators": []
+    },
+    "c40f3476-843a-498d-97fd-9b65ddabe526": {
+        "id": "c40f3476-843a-498d-97fd-9b65ddabe526",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "sad-02.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "abe97c0c-97cd-468c-8f59-6b5e655b4220",
+        "decorators": [
+            "e3e3409c-8163-4e72-9430-1d068aa833ec"
+        ]
+    },
+    "e3e3409c-8163-4e72-9430-1d068aa833ec": {
+        "id": "e3e3409c-8163-4e72-9430-1d068aa833ec",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  return notepad.known === false;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "edc7c1e5-110e-4ff7-9a7e-2c2b8c68f0c3": {
+        "id": "edc7c1e5-110e-4ff7-9a7e-2c2b8c68f0c3",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "abe97c0c-97cd-468c-8f59-6b5e655b4220",
+        "children": [
+            "9b31fa8f-1524-4716-af34-3af49863dfc0",
+            "8cfd326a-1a42-4484-a0a4-2124d1148bd7",
+            "50aeae76-5737-416f-89c4-e3e76d536f45"
+        ],
+        "decorators": [
+            "3b5b5ce7-286c-43e1-b3a6-bc4da14277c4"
+        ]
+    },
+    "3b5b5ce7-286c-43e1-b3a6-bc4da14277c4": {
+        "id": "3b5b5ce7-286c-43e1-b3a6-bc4da14277c4",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  return notepad.known === true;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "9b31fa8f-1524-4716-af34-3af49863dfc0": {
+        "id": "9b31fa8f-1524-4716-af34-3af49863dfc0",
+        "class": "Switch",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "edc7c1e5-110e-4ff7-9a7e-2c2b8c68f0c3",
+        "children": [
+            "53aa73c8-c55c-4150-8d49-93ab1c603820",
+            "a1fbcc25-bd48-4b1c-b5e8-c13bb94e5e52"
+        ]
+    },
+    "53aa73c8-c55c-4150-8d49-93ab1c603820": {
+        "id": "53aa73c8-c55c-4150-8d49-93ab1c603820",
+        "class": "PlayAudio",
+        "name": "",
+        "options": {
+            "audioPath": "tripleh-small.mp3"
+        },
+        "asset-pack": "core",
+        "parent": "9b31fa8f-1524-4716-af34-3af49863dfc0",
+        "decorators": [
+            "1aa5acb9-b396-4ab8-bcad-596afaadf0f6"
+        ],
+        "skipped": false
+    },
+    "1aa5acb9-b396-4ab8-bcad-596afaadf0f6": {
+        "id": "1aa5acb9-b396-4ab8-bcad-596afaadf0f6",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  console.log(\"playing shubham\");",
+                "  return notepad.personName === \"shubham\";",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "a1fbcc25-bd48-4b1c-b5e8-c13bb94e5e52": {
+        "id": "a1fbcc25-bd48-4b1c-b5e8-c13bb94e5e52",
+        "class": "PlayAudio",
+        "name": "",
+        "options": {
+            "audioPath": "test.mp3"
+        },
+        "asset-pack": "core",
+        "parent": "9b31fa8f-1524-4716-af34-3af49863dfc0",
+        "decorators": [
+            "c70422ef-f4d1-4de7-b62b-1ff504254440"
+        ],
+        "skipped": false
+    },
+    "c70422ef-f4d1-4de7-b62b-1ff504254440": {
+        "id": "c70422ef-f4d1-4de7-b62b-1ff504254440",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  console.log(\"playing seth\");",
+                "  return notepad.personName === \"SETH\";",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "8cfd326a-1a42-4484-a0a4-2124d1148bd7": {
+        "id": "8cfd326a-1a42-4484-a0a4-2124d1148bd7",
+        "class": "Switch",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "edc7c1e5-110e-4ff7-9a7e-2c2b8c68f0c3",
+        "children": [
+            "933469ed-224d-4637-99da-c1e43887f4ea",
+            "f67e0c96-356b-43a2-a4b1-6cd4929ada36"
+        ]
+    },
+    "933469ed-224d-4637-99da-c1e43887f4ea": {
+        "id": "933469ed-224d-4637-99da-c1e43887f4ea",
+        "class": "ExecuteScriptAsync",
+        "name": "",
+        "options": {
+            "exec": [
+                "(succeed, fail) => {",
+                "  var request = require('request');",
+                "  request.post('https://smallbizhack.herokuapp.com/clockin/60', function() {",
+                "    succeed();",
+                "  });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "8cfd326a-1a42-4484-a0a4-2124d1148bd7",
+        "decorators": [
+            "d83bed18-fb43-4f32-ada9-108f4625cff7"
+        ]
+    },
+    "f67e0c96-356b-43a2-a4b1-6cd4929ada36": {
+        "id": "f67e0c96-356b-43a2-a4b1-6cd4929ada36",
+        "class": "ExecuteScriptAsync",
+        "name": "",
+        "options": {
+            "exec": [
+                "(succeed, fail) => {",
+                "  var request = require('request');",
+                "  request.post('https://smallbizhack.herokuapp.com/clockin/61', function() {",
+                "    succeed();",
+                "  });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "8cfd326a-1a42-4484-a0a4-2124d1148bd7",
+        "decorators": [
+            "86d90481-8899-4328-bc6a-eb0065c748b5"
+        ]
+    },
+    "d83bed18-fb43-4f32-ada9-108f4625cff7": {
+        "id": "d83bed18-fb43-4f32-ada9-108f4625cff7",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  console.log(\"posting shubham\");",
+                "  return notepad.personName === \"shubham\";",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "86d90481-8899-4328-bc6a-eb0065c748b5": {
+        "id": "86d90481-8899-4328-bc6a-eb0065c748b5",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  console.log(\"posting seth\");",
+                "  return notepad.personName === \"SETH\";",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
     }
 }

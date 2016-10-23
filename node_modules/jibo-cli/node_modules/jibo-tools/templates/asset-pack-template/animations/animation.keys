@@ -1,0 +1,59 @@
+{
+    "framerate": 30,
+    "duration": 60,
+    "layers": [
+        {
+            "id": "832d41d5e0934c00bc75634b9a305812",
+            "name": "Body #1",
+            "type": "Body",
+            "visible": true,
+            "locked": false,
+            "keyframes": [
+                {
+                    "value": {
+                        "Head": 0,
+                        "Torso": 0,
+                        "Pelvis": 0
+                    },
+                    "time": 0
+                },
+                {
+                    "value": {
+                        "Head": 56.000000000000014,
+                        "Torso": -65.5,
+                        "Pelvis": 0
+                    },
+                    "time": 29
+                },
+                {
+                    "value": {
+                        "Head": 0,
+                        "Torso": 0,
+                        "Pelvis": 0
+                    },
+                    "time": 59
+                }
+            ]
+        },
+        {
+            "id": "1fd26d531b6e46ab81578d2c4b5ba169",
+            "name": "Eye Texture #1",
+            "type": "Eye Texture",
+            "visible": true,
+            "locked": false,
+            "keyframes": [
+                {
+                    "value": {
+                        "Texture": "animations/textures/lens.png",
+                        "Color": {
+                            "h": 0,
+                            "s": 0,
+                            "v": 100
+                        }
+                    },
+                    "time": 0
+                }
+            ]
+        }
+    ]
+}
